@@ -8,9 +8,58 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 margin: 0;
 /* diplay flex puts everything in a row, so set the dir to column */
 display: flex;
-flex-direction: column;
 align-items: center;
 justify-content: center;
 height: 100vh;
 overflow: hidden;
+}
+.container{
+    display: flex;
+    /* want them in a row, so flex! */
+    width: 90vw;
+}
+.panel{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    color:rgb(55, 6, 6);
+    cursor: pointer;
+    /* set the initial flex to 0.5 so they begin evenly when not active*/
+    flex:0.5;
+    margin: 10px;
+    /*we want the h3 to be abs, so the parent must be rel*/
+    position: relative;
+    /*we want to have a smooth transition when going between photos*/
+    transition: flex 0.7s ease-in;
+}
+.panel h2{
+    font-size: 26px;
+    position: absolute;
+    /*put them in the bottom left corner*/
+    bottom:20px;
+    left:20px;
+margin:0;
+/* when not active, we don't want the h3 to show bc it looks stupid, so set the opacity to 0 and we will change it to the active state*/
+opacity: 0;
+}
+.panel.active{
+    flex:5;
+}
+.panel.active h2{
+    opacity: 1;
+    /* the below will make sure that the h2 doesn't show up until we are ready for it! */
+    transition: opacity 0.3s ease-in 0.4s;
+}
+/* now we need to set it for opcacity */
+@media(max-width:480px) {
+    .container{
+        width: 100vw;
+    }
+    /* use a pseudoselector  to remove the last two panels on a small screen we want the last two to show!*/
+    .panel:nth-of-type(7),
+    .panel:nth-of-type(8){
+        display: none;
+    }
 }
