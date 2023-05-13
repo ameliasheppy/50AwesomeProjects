@@ -1,0 +1,144 @@
+/* applies to all */
+/* set borderbox so that border and padding wont mess with width  of that element*/
+*{
+    box-sizing: border-box;
+}
+body{
+    color: blueviolet;
+font-family:Arial, Helvetica, sans-serif;
+margin: 0;
+/* diplay flex puts everything in a row, so set the dir to column */
+/* this will set the  */
+overflow-x: hidden;
+background-color: rgb(252, 250, 254);
+}
+
+.container{
+    background-color: aqua;
+    /* set the rotation point and give it a transition */
+    transform-origin: top left;
+    transition: transform 0.5s linear;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+}
+.container.show-nav{
+    /* when we rotate, the  origin by default is in the middle, it turns and rotates it, but we want to rotate it from the top left.*/
+    transform:rotate(-20deg);
+}
+.circle-container{
+    position: fixed;
+    /* below sets it to like a semi circle on the page */
+    top:-100px;
+    left:-100px;
+}
+.circle{
+    background-color:#ff7979;
+    /* we want only a portion of the circle to show at the top, In the cont above, we set it to top and left -100px, so giving this a ht and wid of 200px will only show a portion */
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    /* give it a relative position so that we can put the buttons as absolute */
+    position: relative;
+    transition: transform 0.5s linear;
+}
+
+/* make the rotation */
+.container.show-nav .circle{
+transform: roate(-70deg);
+}
+
+.circle button{
+    /* can set to abs bc parent is rel */
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left:50%;
+    height: 100px;
+    background: transparent;
+    border: 0;
+    font-size: 26px;
+    color:#fff;
+}
+/* want to get rid of the border when it is in a focus state */
+.circle button:focus{
+    outline: none;
+}
+
+.circle button#open{
+    left:60%;
+
+}
+.circle button#close{
+    top:60%;
+    transform: rotate(90deg);
+    transform-origin: top left;
+}
+/* the above is the default for the page so now let's set it to do stuff */
+.container.show-nav + nav li{
+    transform: translateX(0);
+    transition-delay: 0.3s;
+}
+nav{
+    position: fixed;
+    bottom: 40px;
+    left:0;
+    /* set a high z index so it will stay on top */
+    z-index: 100;
+}
+nav ul{
+    list-style-type: none;
+    padding-left: 30px;
+}
+nav ul li{
+    text-transform: uppercase;
+    color: aqua;
+    margin: 40px 0;
+    transform: translateX(-100%);
+    /* give a transition so that it will come in smoothly */
+    transition: transform 0.4s ease-in;
+}
+
+nav ul li i{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* lets make things stick out more at an angle! */
+nav ul li + li{
+    margin-left: 15px;
+    transform: translateX((-150%));
+}
+nav ul li + li + li{
+    margin-left: 30px;
+    transform: translateX((-200%));
+}
+
+nav a{
+    color: #ff7979;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+nav a:hover{
+    color:black;
+    font-weight: bold;
+}
+.content img{
+    max-width: 100%;
+}
+.content {
+    max-width: 1000px;
+    margin: 50px auto;
+}
+.content h1{
+    margin: 0;
+}
+.content small{
+    color:#555;
+    font-style: italic;
+}
+.content p{
+    color: #333;
+    line-height: 1.5;
+}
+
