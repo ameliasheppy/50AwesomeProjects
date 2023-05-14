@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+}
+
+body{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+overflow: hidden;
+margin: 0;
+}
+/* we want to start it blurry and then make it clear. The higher the px of blur, the more blur there will be */
+.bg{
+    background: url('https://www.texasstandard.org/wp-content/uploads/2018/02/39268863584_ed08367d0b_k-2-1024x683.jpg') no-repeat center center/cover;
+    position: absolute;
+    top:-30px;
+    left:-30px;
+    width: calc(100vw + 60px);
+    height: calc(100vh + 60px);
+    /* set to -1 so it will be behind our text! */
+    z-index: -1;
+    filter: blur(0px);
+}
+
+.loading-text{
+    font-size: 60px;
+    color:magenta;
+}
