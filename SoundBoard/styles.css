@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: plum;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+    margin:0;
+}
+
+.btn{
+    background-color: lightcyan;
+    border-radius: 5px;
+    border: none;
+    color:blue;
+    padding: 1.5rem 3rem;
+    font-family: 1.2rem;
+    font-family: inherit;
+}
+
+.btn:hover{
+    opacity: 0.9;
+}
+.btn:focus{
+    outline: none;
+}

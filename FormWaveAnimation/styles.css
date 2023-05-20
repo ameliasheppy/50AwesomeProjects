@@ -80,6 +80,7 @@ body {
   border-bottom-color: lightblue;
 }
 
+/* form-control is rel, so set the label in them to abs */
 .form-control label {
   position: absolute;
   top: 15px;
@@ -87,6 +88,7 @@ body {
   pointer-events: none;
 }
 
+/* cubic bezier makes a curve, but we have to set the curve for our letters */
 .form-control label span {
   display: inline-block;
   font-size: 18px;
@@ -94,6 +96,8 @@ body {
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+
+/* when we click on the span, we want to make it do something */
 .form-control input:focus + label span,
 .form-control input:valid + label span {
   color: lightblue;
