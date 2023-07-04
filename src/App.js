@@ -26,6 +26,7 @@ class App extends Component {
             name: { firstName: "Amy", lastName: "Stanley"}
           }
         }, () => {
+          //the below will auto run ONLY after the state is fully updated. So we don't have to ask if our code will updte
           console.log(this.state)
         })
        }}>Change Name</button>
