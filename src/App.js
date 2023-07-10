@@ -29,7 +29,12 @@ const App = () => {
   //sometimes it is a num
   //sometimes it is an empty arr
   //
-  const [searchField, setSearchField] = useState('cat')
+  const [searchField, setSearchField] = useState('cat or an empty str')
+  const [monsters, setMonsters] = useState([])
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters)
+  const [title, setTitle] =useState('')
+  console.log(searchField);
+  console.log({searchField})
   //we need an arr of monsters. It will be empty at first.
   //but if we fetch to an API to get our users/monsters, that is a different arr from mem, so it would keep fetching and rendering forever
   //the equality check fails user === user nope! It's a different arr in mem
@@ -39,13 +44,10 @@ const App = () => {
   //How do we generate side effects from functional components?
   //useEffect!
   //a side effect is some behavior that we trigger from our func that effect something outside the scope of the func
-  const [monsters, setMonsters] = useState([])
   //uh oh, the CL runs twice for every keystroke
   //every time the event changes, the state updates bc we are typing new chars or removing chars from a str
-  console.log(searchField);
   //or a destructured version. 
   //look at what the CL's give back. one gives str, one gives obj, they give back whatever type you gave them
-  console.log({searchField})
 
   //we are going to get our monsters using a fetch
   //since we are using a fetch, and changing our state, we need to use a useEffect, with an empty dependency arr to make sure that it only renders on page load, not 800+ times
@@ -54,27 +56,56 @@ const App = () => {
   //an arr of dependencies
   //what is the first arg, the CB func, in the {}?
   //the code of the effect that we want to happen in the func comp
-  //the second, empty arr, contains deps, 
-  useEffect(() => {}, [])
+  //the second, empty arr, contains deps, usually state values or prop values
+  //props are args that get passed in as props to our func component
+  //in the dep arr, we are saying "when any of the values in the dep arr change,"
+  //'RUN the useEffect/CB func'
+  //It will only make the call if the vals inside change
+  //When do we want to make a fetch call? 
+  //once, onLoad! if we never want to trigger our fetch again, give it an empty dep arr!
+  //say to useEffect, only call this on mount with an [] (empty dep arr)
+  //
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then((response) => response.json())
+    .then((users) => setMonsters(users))
+  }, [])
 
   //to set the searchField state to what the user types in, we pass 
   // setSearchField(searchFieldString) searchFieldString into our setter func
-  const onSearchChange = (event) => {
-    const searchFieldString = event.target.value.toLocaleLowerCase()
-       setSearchField(searchFieldString)
-  }
+//Every time the func runs top to bottom, the monsters list is getting
+//rebuilt, even if it hasn't changed.
+//We want to do this when monsters or search field changes.
+//filtering every time will cost our app time and can lead to inefficiencies
+//only want to filter when something relevant to monsters has changed
 
-  const filteredMonsters = monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(searchField)
-  })
+useEffect(() => {
+  const newFilteredMonsters = monsters.filter((monster) => {
+    return monster.name.toLocaleLowerCase().includes(searchField)
+});
+setFilteredMonsters(newFilteredMonsters)
+}, [monsters, searchField])
+ 
+const onSearchChange = (event) => {
+  const searchFieldString = event.target.value.toLocaleLowerCase()
+     setSearchField(searchFieldString)
+}
+const onTitleChange = (event) => {
+  const searchFieldString = event.target.value.toLocaleLowerCase()
+     setTitle(searchFieldString)
+}
 
   return(
     <div className='App'>
-      <h1 className='app-title'>Monsters Crew</h1>
+      <h1 className='app-title'>{title}</h1>
       <SearchBar 
       onChangeHandler={onSearchChange} 
       placeholder="Find a friend"
       className="monsters-search-box"/>
+            <SearchBar 
+      onChangeHandler={onTitleChange} 
+      placeholder="What is this called"
+      className="title-box"/>
       <CardList monsters={filteredMonsters} />
     </div>
   )
