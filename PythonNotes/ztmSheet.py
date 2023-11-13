@@ -631,3 +631,82 @@ even_numbers_filtered_with_python = [x for x in map_numbers if x % 2 == 0]
 print(even_numbers_with_filter, 'Filtered with a lambda')
 print(even_numbers_filtered_with_python,
       'filtered with a python list comprehension')
+
+conditions = [False, True, False]
+result_any = any(conditions)
+print(result_any)
+
+conditions_all = [True, 1, 3, True]
+conditions_all_false = [True, 1, 3, False]
+result_all = all(conditions_all)
+result_all_false = all(conditions_all_false)
+print(result_all)
+print(result_all_false)
+
+
+# closures in Python:
+# a closure is a nested function references a value of its enclosing function and then the enclosing function returns the nested function
+def get_multiplier(a):
+    def out(b):
+        return a * b
+    return out
+
+
+multiply_by_three = get_multiplier(3)
+print(multiply_by_three(10))
+
+# if multiple nsted functions within an enclosing function reference the same value, that value gets shared.
+# to dynamically access the functions first free var us
+print(multiply_by_three.__closure__[0].cell_contents, 'cell contents')
+
+# we are making a function called memoize that takes another function ('func') as its argument. This is an example of a decorator function. Decorators in python are a powerful way to modify or extend the behvaior of functions.
+
+
+def memoize(func):
+    cache = {}
+
+# This line initializes an empty dictionary named cache. This dictionary will be used to store the results of previous function calls to avoid redundant computations.
+    def wrapper(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]
+
+    return wrapper
+
+
+# Usage
+@memoize
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+# scope with Python
+# if a var is assigned to anywhere in the scope, it is regarded as a local var, unless it is declare as 'global' or 'nonlocal'
+
+
+def get_counter():
+    i = 0
+
+    def out():
+        nonlocal i
+        i += 1
+        return i
+    return out
+
+
+counter = get_counter()
+print(counter(), counter(), counter())
+
+global_variable = 5
+
+
+def modify_global():
+    global global_variable
+    global_variable += 1
+    print("Inside Function:", global_variable)
+
+
+modify_global()
+print("Outside Function:", global_variable)
