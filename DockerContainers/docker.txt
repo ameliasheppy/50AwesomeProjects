@@ -1,0 +1,35 @@
+A Docker container is a replacement for a VM 
+Servers in data center are expensive! 
+Chuck goes and gets his. 
+On a server, you install an OS on the hardware. All the servers resources are for that one OS has CPU, RAM, hardrive on it. May be Linux or Windows. 
+You want Linux and Windows? Buy two servers!  $$$$$$$
+But now you can use a hypervisor to manage two OS on your server through virtualization 
+Hypervisor has one goal- divide your server resources into multiple servers. 
+VMWare ESXI (Elastic Sky X. In September 2004, the replacement for ESX was internally called VMvisor, but later changed to ESXi (as the "i" in ESXi stood for "integrated"))
+Takes a portion of the server resources and divides it up between OS 
+Ubuntu get 1 CPU,  2 GB (RAM), 100GB(hardrive space )
+Windows16 1 CPU, 2GB (RAM), 40GB(hardrive space)
+Keep doing that until server out of resources 
+But DOcker doesn't do that!
+When we use Docker containers, it takes us to before virtualization. Docker gives us access to everything a server can do 
+VM's virtualize the hardware, Docker virtualizes the OS! 
+                        Old way:
+                windows Ubuntu debian   <-os sits on hypervisor
+                Hypervisor (VMWare) 
+                Hardware 
+
+                        Docker 
+                windows   centOS    Ubuntu (containers have many OS)
+                Docker Engine (virtualizes OS to make containers)
+                Ubuntu
+                Hardware
+Docker installs like any other app we may install, it'll be a process running. Then using Docker, we virtualize parts of our OS to make containers. These containers do pretty much the same thing as a VM. Many of the same qualities. 
+Containers, like VM's, can run a different OS. 
+Containers are crazy fast, lightweight micro computers. Why
+Docker containers have their own:
+OS
+CPU 
+Memory 
+Network  
+Think of containers are quarantined, you can picture them as installed on a bare metal server, that's how isolated they are! 
+These are lightweight and WICKED fast!! 
