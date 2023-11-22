@@ -63,3 +63,97 @@ last_dog = dog_list[len(dog_list) - 1]
 cats = ["Tom", "Jerry", "Pickle"]
 pets = [dog_list, cats]
 print(pets)
+
+# Let's work on making a game that needs user input. Our dog has a bone that they need to bury. Where should they put it?
+
+front_yard = [" ", " ", " "]
+garden = [" ", " ", " "]
+back_yard = [" ", " ", " "]
+
+holes = [front_yard, garden, back_yard]
+
+print("Bury the dog bone! A mound of dirt in an \"X\" marks the spot. ")
+hole = input("Where did the dog bury its snack? Enter a number from 1-9. ")
+
+# we can't use replace here bc we can't modify a str in place, so we need to just reassign the value at the index to x
+hole = int(hole)
+if hole == 1:
+    front_yard[0] = "X"
+elif hole == 2:
+    front_yard[1] = "X"
+elif hole == 3:
+    front_yard[2] = "X"
+elif hole == 4:
+    garden[0] = "X"
+elif hole == 5:
+    garden[1] = "X"
+elif hole == 6:
+    garden[2] = "X"
+elif hole == 7:
+    back_yard[0] = "X"
+elif hole == 8:
+    back_yard[1] = "X"
+elif hole == 9:
+    back_yard[2] = "X"
+else:
+    print("Sorry, please enter a number with a value of 1-9.")
+
+print(f"{front_yard}\n{garden}\n{back_yard}")
+
+
+# An alternate way to do this is:
+
+line1 = [" ", " ", " "]
+line2 = [" ", " ", " "]
+line3 = [" ", " ", " "]
+
+# this is a list
+map = [line1, line2, line3]
+position = input("Type a b or c and a number 1-3 to place your treasure! ")
+
+# make all the letters consistently small
+letter = position[0].lower()
+abc = ["a", "b", "c"]
+
+# set the letter index to add to our list of lists, map
+letter_index = abc.index(letter)
+# set the number index to add to our map
+number_index = int(position[1]) - 1
+# replace the item at the specified index with an x
+map[number_index][letter_index] = "X"
+
+print(f"{line1}\n{line2}\n{line3}")
+
+rock = "🪨"
+paper = "📃"
+scissors = "✂️"
+
+computer_choice = random.choice([rock, paper, scissors])
+player_choice = input("rock, paper, or scissors?")
+if player_choice == "rock":
+    player_choice = rock
+elif player_choice == "paper":
+    player_choice = paper
+elif player_choice == "scissors":
+    player_choice = scissors
+else:
+    print("Try typing your answer again")
+
+winner = ""
+if computer_choice == rock and player_choice == scissors:
+    winner = "Computer!"
+elif player_choice == rock and computer_choice == scissors:
+    winner = "you! Great job!"
+elif computer_choice == scissors and player_choice == paper:
+    winner = "Computer!"
+elif player_choice == scissors and computer_choice == paper:
+    winner = "you! Great job!"
+elif computer_choice == paper and player_choice == rock:
+    winner = "Computer! "
+elif player_choice == paper and computer_choice == rock:
+    winner = "you! Great job!"
+else:
+    winner = f"no one! You both chose {player_choice}"
+
+print(
+    f"Computer's choice is {computer_choice}, player's choice is {player_choice}. Winner is {winner}")
