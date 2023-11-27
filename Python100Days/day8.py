@@ -97,13 +97,8 @@ is_prime(3)
 is_prime(30)
 
 # A fun little encryption activity that we can do is to make a caesar cipher where we do a shift of the alphabet over by an int.
+
 print(logo)
-
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: \n")
-text = input("Type your message: \n").lower()
-shift = int(input("Type the shift number: \n"))
-
-# O(n)  <---- bc n is the length of the input text, but may be higher due to the shift.
 
 
 def caesar(direction, text, shift):
@@ -123,7 +118,20 @@ def caesar(direction, text, shift):
     print(f"The {direction}d text is now: {shifted_text}")
 
 
-caesar(direction, text, shift)
+continue_the_cipher = True
+while continue_the_cipher:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: \n")
+    text = input("Type your message: \n").lower()
+    shift = int(input("Type the shift number: \n"))
+
+    # O(n)  <---- bc n is the length of the input text, but may be higher due to the shift.
+
+    caesar(direction, text, shift)
+    result = input("Type 'yes' if you want to go again. If not, type 'no'. \n")
+    if result == "no":
+        continue_the_cipher = False
+        print("Goodbye!! :)")
+
 
 '''
 User Input:
