@@ -69,6 +69,10 @@ dogs = {
     "Boxer": "Pilot"
 }
 
+dogs["Border Collie"] = "Em"
+dogs["JRT"] = "Boomer"
+print(dogs)
+
 travels = {
     "North Carolina": ["Nags Head", "Rodanthe", "Raleigh", "Rocky Mount"],
     "Georgia": {"cities_visited": ["Buford", "Flowery Branch", "Atlanta", "Tiger"], "total_visits": 7}
@@ -79,8 +83,11 @@ travels = {
 nest_of_fun = [{"Hikes": ["Mt Sterling", "Stone Mountain"], "ATL": {
     "aquarium": "dolphin show", "stone mountain park": "hike and park time"}}]
 
+nest_of_fun.append({"Buford": ["Publix", "Buccees"]})
+
 print(nest_of_fun[0]["Hikes"], "<------ Access the dict in a list")
 print(nest_of_fun[0])
+print(nest_of_fun, "**************************************")
 
 summer_2024 = [
     {
@@ -129,7 +136,7 @@ def find_highest_bidder(bids_submitted):
         if bid_amount > highest:
             highest = bid_amount
             winner = bidder
-    print(f"The winner is {winner} with a high bid of ${highest}")
+    print(f"The winner is {winner.title()} with a high bid of ${highest}")
 
 
 # Our key will be the bidder name
