@@ -15,3 +15,5 @@ coffee_maker = CoffeeMaker()
 # This is why OOP is awesome. We don't really have to care how it is all implemented behind the scenes. We import and use the vars and methods.
 coffee_maker.report()
 my_money_mcahine.report()
+
+# We don't care how report works, just read the docs, find the method we want, and trust it will work
